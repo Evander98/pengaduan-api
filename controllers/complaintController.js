@@ -30,4 +30,33 @@ module.exports = {
       }
     );
   },
+  getComment: (req, res) => {
+    db.query(`select nama_lengkap, isi_komentar from komentar inner join users on id_user=users.id where id_pengaduan=${req.query.id_pengaduan}`, (err, result) => {
+      if (err) throw "Server Error";
+      // console.log(result)
+      res.send(result)
+    })
+  },
+  comment: (req, res) => {
+    db.query('insert into komentar set ?', req.body, (err, result) => {
+      try {
+        if (err) throw "Server Error";
+        res.redirect(`/complaint/getComment?id_pengaduan=${req.body.id_pengaduan}`)
+      } catch (err) {
+        console.log(err)
+        res.send(err)
+      }
+    })
+  },
+  countComments : (req, res) => {
+    db.query('select count(komentar.id_pengaduan) as jumlahKomentar, komentar.id_pengaduan from komentar join daftar_pengaduan on komentar.id_pengaduan=daftar_pengaduan.id_pengaduan group by komentar.id_pengaduan', (err, result) => {
+      console.log(result)
+      res.send(result)
+    })
+  },
+  updateStatus : (req, res) => {
+    db.query(`update daftar_pengaduan set status = ${req.query.status} where id_pengaduan = ${req.query.id}`, (err, result) => {
+      res.send("Update Berhasil")
+    })
+  }
 };

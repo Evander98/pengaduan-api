@@ -25,7 +25,7 @@ module.exports = {
             try {
               if (err) throw { msg: "Server Error" };
               db.query(
-                `select id, nama_lengkap, email, jenis_kelamin, role, alamat from users where email='${data.email}'`,
+                `select id, nama_lengkap, email, jenis_kelamin, role, kelurahan, kecamatan, kode_pos, nomor_telepon from users where email='${data.email}'`,
                 (err, selectResult) => {
                   try {
                     if (err) throw { msg: "Server Error" };
@@ -51,9 +51,8 @@ module.exports = {
       .createHmac("sha256", "kunciPengaduan")
       .update(req.query.sandi)
       .digest("hex");
-
     db.query(
-      `select id, nama_lengkap, email, jenis_kelamin, role, alamat from users where email='${email}' and kata_sandi='${hashedPassword}'`,
+      `select id, nama_lengkap, email, jenis_kelamin, role, kelurahan, kecamatan, kode_pos, nomor_telepon from users where email='${email}' and kata_sandi='${hashedPassword}'`,
       (err, selectResult) => {
         try {
           if (err) throw { msg: "Server Error" };
@@ -68,4 +67,5 @@ module.exports = {
       }
     );
   },
+  
 };
