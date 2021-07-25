@@ -1,6 +1,8 @@
 const router = require('express').Router()
-const { getPartners } = require('../controllers').partner
+const { getPartners, getCommission, getAll } = require('../controllers').partner
 
 router.get('/getPartners', getPartners)
+router.get('/getCommissions', getCommission)
+router.get('/getAll', getAll)
 
 module.exports = router

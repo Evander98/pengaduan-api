@@ -30,6 +30,11 @@ module.exports = {
       }
     );
   },
+  countComplaintByPartner: (req, res) => {
+    db.query("select id_mitra, nama_mitra_kerja, count(id_mitra) as count from daftar_pengaduan join mitra_kerja on id_mitra=id_mitra_kerja group by id_mitra", (err, result) => {
+      res.send(result);
+    })
+  },
   getComment: (req, res) => {
     db.query(`select nama_lengkap, isi_komentar from komentar inner join users on id_user=users.id where id_pengaduan=${req.query.id_pengaduan}`, (err, result) => {
       if (err) throw "Server Error";
@@ -50,7 +55,7 @@ module.exports = {
   },
   countComments : (req, res) => {
     db.query('select count(komentar.id_pengaduan) as jumlahKomentar, komentar.id_pengaduan from komentar join daftar_pengaduan on komentar.id_pengaduan=daftar_pengaduan.id_pengaduan group by komentar.id_pengaduan', (err, result) => {
-      console.log(result)
+      // console.log(result)
       res.send(result)
     })
   },
