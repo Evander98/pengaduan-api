@@ -6,20 +6,20 @@ module.exports = {
   searchComplaint : (req, res) => {
     const filtering = (sentence, common) => {
       var wordArr = sentence.match(/\w+/g),
-          commonObj = {},
-          uncommonArr = [],
-          word, i;
+        commonObj = {},
+        uncommonArr = [],
+        word, i;
       
       // common = common.split(',');
       for ( i = 0; i < common.length; i++ ) {
-          commonObj[ common[i].trim() ] = true;
+        commonObj[ common[i].trim() ] = true;
       }
       
       for ( i = 0; i < wordArr.length; i++ ) {
-          word = wordArr[i].trim().toLowerCase();
-          if ( !commonObj[word] ) {
-              uncommonArr.push(word);
-          }
+        word = wordArr[i].trim().toLowerCase();
+        if ( !commonObj[word] ) {
+          uncommonArr.push(word);
+        }
       }
       
       return uncommonArr.join(' ');
@@ -74,6 +74,7 @@ module.exports = {
         for(let i in searchResult){
           // console.log(searchResult[i].index)
           newResult.push(result[searchResult[i].index])
+          newResult[i].similarity = searchResult[i].similarityIndex;
         }
 
         // console.log(newResult)
