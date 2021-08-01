@@ -3,7 +3,7 @@ const app = express()
 const cors = require('cors')
 const port = process.env.PORT || 2000
 
-const { auth, complaint, partner, user, algorithm, legislation, meetingResult } = require('./routers')
+const { auth, complaint, partner, user, algorithm, legislation, manuscript, news, schedule, meetingResult } = require('./routers')
 
 app.use(cors())
 app.use(express.json())
@@ -14,7 +14,11 @@ app.use('/partner', partner)
 app.use('/user', user)
 app.use('/find', algorithm)
 app.use('/legislation', legislation)
+app.use('/manuscript', manuscript)
+app.use('/news', news)
+app.use('/schedule', schedule)
 app.use('/result', meetingResult)
+
 
 app.use('/', (req, res) => {
   res.send('<h1>Selamat datang di Pengaduan API</h1>')

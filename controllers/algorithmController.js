@@ -68,7 +68,7 @@ module.exports = {
         //   console.log(tf_idf.createVectorSpaceModel('mengadu', corpus[i]))
         // }
         // console.log(keywords)
-        // console.log(search_result);
+        console.log(searchResult);
         // console.log(corpus)
 
         for(let i in searchResult){
