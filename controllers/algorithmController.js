@@ -57,14 +57,14 @@ module.exports = {
 
         for(let i in cosine){
           if(cosine[i] > 0){
-            newResult.push({...result[i], similarity: cosine[i]})
+            newResult.push({...result[i], similarity: cosine[i] * 0.1})
           }
         }
 
         newResult.sort(function (a, b) {
           return b.similarity - a.similarity;
         })
-        console.log(query);
+        // console.log(newResult);
         res.send(newResult);
 
         // let tempKeywords = []
