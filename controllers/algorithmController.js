@@ -64,7 +64,7 @@ module.exports = {
         newResult.sort(function (a, b) {
           return b.similarity - a.similarity;
         })
-        console.log(newResult);
+        console.log(query);
         res.send(newResult);
 
         // let tempKeywords = []
