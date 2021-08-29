@@ -34,7 +34,7 @@ module.exports = {
                     if (err) throw { msg: "Server Error" };
                     var mailOptions = verification(selectResult[0].email);
                     transporter.sendMail(mailOptions, (err) => {
-                      if (err) throw "Error saat pengiriman email";
+                      if (err) throw {msg : "Error saat pengiriman email"};
                       res.send({msg : 'Registrasi berhasil, silahkan periksa email untuk verifikasi akun!'});
                     });
                   } catch (err) {
@@ -68,7 +68,7 @@ module.exports = {
           if(selectResult[0].is_verified == 0){
             var mailOptions = verification(selectResult[0].email);
             transporter.sendMail(mailOptions, (err) => {
-              if (err) throw "Error saat pengiriman email";
+              if (err) throw {msg: "Error saat pengiriman email"};
               res.send({msg : 'Akun belum terverifikasi, silahkan periksa email untuk verifikasi akun!'});
             })
           }else{
