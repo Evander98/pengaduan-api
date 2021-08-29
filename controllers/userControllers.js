@@ -2,12 +2,12 @@ const db = require("../database");
 
 module.exports = {
   getUser : (req, res) => {
-    db.query(`select id, nama_lengkap, email, kecamatan, kelurahan, kode_pos, nomor_telepon, role, nik, jenis_kelamin from users where id = ${req.query.id}`, (err, result) => {
+    db.query(`select id, nama_lengkap, email, kecamatan, kelurahan, kode_pos, nomor_telepon, role, nik, jenis_kelamin, is_verified from users where id = ${req.query.id}`, (err, result) => {
       res.send(result[0])
     })
   },
   getUsers : (req, res) => {
-    db.query(`select id, nama_lengkap, email, kecamatan, kelurahan, kode_pos, nomor_telepon, role, nik, jenis_kelamin from users where role = 0`, (err, result) => {
+    db.query(`select id, nama_lengkap, email, kecamatan, kelurahan, kode_pos, nomor_telepon, role, nik, jenis_kelamin, is_verified from users where role = 0`, (err, result) => {
       res.send(result)
     })
   },
